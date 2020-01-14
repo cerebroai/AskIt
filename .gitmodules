@@ -1,0 +1,6 @@
+[submodule "convai"]
+	path = convai
+	url = https://github.com/cerebroai/transfer-learning-conv-ai
+[submodule "parlai"]
+	path = parlai
+	url = https://github.com/cerebroai/ParlAI
