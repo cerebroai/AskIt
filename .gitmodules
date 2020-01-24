@@ -4,3 +4,6 @@
 [submodule "parlai"]
 	path = parlai
 	url = https://github.com/cerebroai/ParlAI
+[submodule "redditdialogue"]
+	path = redditdialogue
+	url = https://github.com/cerebroai/gpt2bot
