@@ -109,7 +109,7 @@ def get_response():
     score = request.json['score']
     history = request.json['history']
     if score < 0.5:
-        bot_message = generate_response(model_reddit, tokenizer_reddit, list(map(tokenizer_reddit.encode, history)), config)
+        bot_message = generate_response(model_reddit, tokenizer_reddit, ' {} '.format(tokenizer_reddit.eos_token).join(history), config)
     else:
         out_ids = sample_sequence(custom_personality, list(map(tokenizer.encode, history)), tokenizer, model, args)
         bot_message = tokenizer.decode(out_ids, skip_special_tokens=True)
