@@ -26,7 +26,7 @@ app_flask = Flask(__name__)
 CORS(app_flask, support_credentials=True)
 
 UPLOAD_FOLDER = './uploads'
-PENALITY = 0.5
+CLOSENESS = 0.01
 app_flask.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER 
 hostname = socket.gethostname()    
 IPAddr = socket.gethostbyname(hostname)  
@@ -113,9 +113,7 @@ def get_response():
     else:
         out_ids = sample_sequence(custom_personality, list(map(tokenizer.encode, history)), tokenizer, model, args)
         bot_message = tokenizer.decode(out_ids, skip_special_tokens=True)
-    bot_embedding = model_sentence_transformers.encode(bot_message)
-    history_embeddings = model_sentence_transformers.encode(chain(*history))
-    score += PENALITY * cosine_similarity(history_embeddings, bot_embedding)
+    score += CLOSENESS 
     return jsonify(response = bot_message, score = score)
 
 
