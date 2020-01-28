@@ -83,7 +83,7 @@ personality = random.choice(personalities)
 # logger.info("Selected personality: %s", tokenizer.decode(chain(*personality)))
 print(personality)
 l = chain(*personality)
-custom_personality_text = ['i am the dean of the college', 'i work in the field of humanities and in my free time I like conducting talks which make no sense', 'i also have hair loss']
+custom_personality_text = ['I am student from Canada', 'i work in the field of engineering and in my free time I like conducting talks', 'i like playing basketball']
 custom_personality = list(map(tokenizer.encode, custom_personality_text))
 print(custom_personality)
 logger.info("Selected personality: %s", tokenizer.decode(chain(*custom_personality)))
@@ -105,12 +105,13 @@ def cosine_similarity(l1, l2):
 
 @app_flask.route('/get_response', methods=['GET', 'POST'])
 def get_response():
+    print(request.json)
     score = request.json['score']
     history = request.json['history']
     if score < 0.5:
-        bot_message = generate_response(model_reddit, tokenizer_reddit, tokenizer_reddit.encode(chain(*history)), config)
+        bot_message = generate_response(model_reddit, tokenizer_reddit, list(map(tokenizer_reddit.encode, history)), config)
     else:
-        out_ids = sample_sequence(custom_personality, tokenizer.encode(chain(*history)), tokenizer, model, args)
+        out_ids = sample_sequence(custom_personality, list(map(tokenizer.encode, history)), tokenizer, model, args)
         bot_message = tokenizer.decode(out_ids, skip_special_tokens=True)
     bot_embedding = model_sentence_transformers.encode(bot_message)
     history_embeddings = model_sentence_transformers.encode(chain(*history))
