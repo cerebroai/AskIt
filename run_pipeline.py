@@ -83,7 +83,8 @@ personality = random.choice(personalities)
 # logger.info("Selected personality: %s", tokenizer.decode(chain(*personality)))
 print(personality)
 l = chain(*personality)
-custom_personality_text = ['I am student from Canada', 'i work in the field of engineering and in my free time I like conducting talks', 'i like playing basketball']
+custom_personality_text = ['I am student from India', 'i work in the field of Computer science', 'i like playing cricket', 'In my free time I like conducting talks for students to learn', 
+                            'I am a huge fan of IPL', 'I like talking, its fun to talk!' ]
 custom_personality = list(map(tokenizer.encode, custom_personality_text))
 print(custom_personality)
 logger.info("Selected personality: %s", tokenizer.decode(chain(*custom_personality)))
