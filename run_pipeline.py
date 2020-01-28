@@ -96,7 +96,6 @@ target_dir = download_model_folder(config)
 model_reddit, tokenizer_reddit = load_model(target_dir, config)
 
 def cosine_similarity(l1, l2):
-    l1, l2 = , data[j]
     cosine = torch.mm(l1.unsqueeze(0), l2.unsqueeze(0).transpose(0, 1))
     n1, n2 = l1.norm(), l2.norm()
     value = cosine/(n1*n2)

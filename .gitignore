@@ -3,3 +3,4 @@ env/
 apex/
 dataset_cache_OpenAIGPTTokenizer
 models/
+__pycache__
